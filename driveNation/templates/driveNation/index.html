@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+      <section class="z-2 position-absolute w-75 rounded-3" style="margin: 0 0 0 150px">
+        <div class="content-retirar text-white d-flex flex-column">
+          <h1 class="fs-4 ms-5">Alugar carro</h1>
+            <br>
+          <div >
+              <form action="vehicle">
+                <div class="d-flex justify-content-start">
+                    <div class="form-floating mx-5 d-flex flex-column">
+                      <select class="form-select mb-3" name="retirada" id="floatingSelect" aria-label="Floating label select example">
+                        <option selected>Escolha o local de retiradada</option>
+                        <option value="maceio-centro">Maceió - Centro</option>
+                      </select>
+                      <label for="retirada" class="form-label">Local de Retirada</label>
+                    </div>
+                    <div class="form-floating me-5">
+                      <input type="date" class="form-control" id="floatingInput">
+                      <label for="floatingInput">Data</label>
+                    </div>
+                    <div class="form-floating">
+                      <select class="form-select" id="floatingSelect"  name="hora-retirada" aria-label="Floating label select example">
+                        <option selected>00:00</option>
+                        <option value="8:00">8:00</option>
+                        <option value="8:00">8:30</option>
+                        <option value="8:00">9:00</option>
+                        <option value="8:00">9:30</option>
+                        <option value="8:00">10:00</option>
+                        <option value="8:00">10:30</option>
+                        <option value="8:00">11:00</option>
+                        <option value="8:00">11:30</option>
+                        <option value="8:00">13:00</option>
+                        <option value="8:00">13:30</option>
+                        <option value="8:00">14:00</option>
+                        <option value="8:00">14:30</option>
+                        <option value="8:00">15:00</option>
+                        <option value="8:00">15:30</option>
+                        <option value="8:00">16:00</option>
+                      </select>
+                      <label for="hora-retirada">Hora</label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start">
+                  <div class="form-floating mx-5 d-flex flex-column">
+                      <select class="form-select mb-3" name="devolucao" id="floatingSelect" aria-label="Floating label select example">
+                          <option selected>Escolha o local de devolução</option>
+                          <option value="maceio-centro">Maceió - Centro</option>
+                      </select>
+                      <label for="devolucao" class="form-label">Local de Devolução</label>
+                  </div>
+                  <div class="form-floating me-5">
+                      <input type="date" class="form-control" id="floatingInput">
+                      <label for="floatingInput">Data</label>
+                  </div>
+                  <div class="form-floating">
+                      <select class="form-select" id="floatingSelect"  name="hora-devolucao" aria-label="Floating label select example">
+                          <option selected>00:00</option>
+                          <option value="8:00">8:00</option>
+                          <option value="8:00">8:30</option>
+                          <option value="8:00">9:00</option>
+                          <option value="8:00">9:30</option>
+                          <option value="8:00">10:00</option>
+                          <option value="8:00">10:30</option>
+                          <option value="8:00">11:00</option>
+                          <option value="8:00">11:30</option>
+                          <option value="8:00">13:00</option>
+                          <option value="8:00">13:30</option>
+                          <option value="8:00">14:00</option>
+                          <option value="8:00">14:30</option>
+                          <option value="8:00">15:00</option>
+                          <option value="8:00">15:30</option>
+                          <option value="8:00">16:00</option>
+                      </select>
+                      <label for="hora-devolucao">Hora</label>
+                  </div>
+                </div>
+                  <div>
+                  <input type="submit" value="Continuar" class="btn btn-primary mx-5">
+                  </div>
+              </form>
+          <div>
+        </div>
+      </section>
+      <section class="sectionCarousel">
+          <div id="carouselExampleInterval" class="carrossel carousel slide bg-primary" data-bs-ride="carousel">
+            <div class="carousel-inner d-flex justify-content-between align-items-center">
+              <div class="carousel-item active" data-bs-interval="2000" style="">
+                <img src="{% static 'images/carros-1.png' %}" class="imagemCarrossel d-block" alt="..." >
+              </div>
+              <div class="carousel-item" style="">
+                <img src="{% static 'images/onix.png'%}" class="imagemCarrossel d-block"  alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+      </section>
+{% endblock %}
