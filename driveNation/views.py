@@ -29,3 +29,9 @@ def vehicle(request):
         'cars' : cars, 
     }
     return render(request, "driveNation/vehicle.html", informations)
+
+def register(request):
+    return render (request, "driveNation/register.html")
+
+def login(request):
+    return render(request, "driveNation/login.html")

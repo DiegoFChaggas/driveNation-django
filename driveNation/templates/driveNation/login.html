@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<main >
+        <div class="d-flex justify-content-center">
+
+            <div class="card mt-3 text-center w-50 ">
+
+                <div class="card-header text-bg-primary p-3">
+                    <h1>Login</h1>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="LOGAR">
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" name="email" class="form-control" placeholder="exemplo@email.com" required autofocus>
+                        </div>
+
+                        <div class="form-group my-3">
+                            <label for="senha">Senha</label>
+                            <input type="password" name="senha" class="form-control" placeholder="*******" required>
+                        </div>
+                        <input type="submit" class="btn btn-primary w-50" name="btnLogin" value="Entrar">
+                    </form>
+                    <br>
+                    <p><a href="register">Não possui login? Cadastre-se</a></p>
+                    <p><a href="#">Esqueci a senha</a></p>
+                    
+                </div>
+
+            </div>
+        </div>
+    </main>
+{% endblock %}
