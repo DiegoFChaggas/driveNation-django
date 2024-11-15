@@ -5,7 +5,9 @@ class NaturalPerson(models.Model):
     birth_date = models.DateField()
     sex = models.CharField(max_length=1)
     name = models.CharField(max_length=255)
-
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return self.name
 
@@ -19,7 +21,9 @@ class User(models.Model):
     registration_date = models.DateTimeField(auto_now=True)
     natural_person = models.ForeignKey(NaturalPerson, on_delete=models.CASCADE)
     permission = models.CharField(max_length=3)
-
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return self.email
 
@@ -32,7 +36,12 @@ class Vehicle(models.Model):
     chassis = models.CharField(max_length=20, unique=True)
     renavam = models.CharField(max_length=11, unique=True)
     fuel_type = models.CharField(max_length=20)
+    image = models.ImageField(upload_to='vehicles/images/%Y/%m/%d/')
+    title = models.TextField()
+    subtitle = models.TextField()
     
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
     
     
     def __str__(self):
