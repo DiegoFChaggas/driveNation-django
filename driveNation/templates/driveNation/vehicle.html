@@ -1,11 +1,11 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} {% load static %} {% block title %}Vehicle {% endblock title %}
+{% block content %}
 
 <section class="container d-flex flex-column align-items-center">
   <h1 class="title">Selecione o veiculo que melhor te atende</h1>
   <br /><br /><br />
   <div class="linha-produtos">
     {% for car in cars %}
-    <form action="">
       <div class="corpo-produto">
         <h5 class="title">{{car.title}}</h5>
         <div class="img-produto">
@@ -16,12 +16,12 @@
           <p>A partir de</p>
           <h2>R${{car.price}}/dia</h2>
         </div>
-        <button type="submit" class="button" name="addcarrinho">
-          Escolher Grupo
-        </button>
+        <a href="{% url 'location' %}" class="text-decoration-none text-light"
+          ><button class="button fixed-bottom" name="">
+            Reservar Agora
+          </button>
+        </a>
       </div>
-    </form>
-
     {% endfor %}
   </div>
 </section>

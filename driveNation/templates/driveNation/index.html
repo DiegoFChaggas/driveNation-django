@@ -1,4 +1,5 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} {% load static %} {% block title %}Home{% endblock %}
+{% block content %}
 <!--<div class="top-bar d-flex">
   <section
     class="z-2 position-absolute w-100 rounded-3"
@@ -111,6 +112,7 @@
     </div>
   </section>
 </div>-->
+
 <div class="bg-primary">
   <div class="slider">
     <div class="slides">
@@ -151,27 +153,25 @@
     <h5 class="title">Carros</h5>
     <div class="linha-produtos">
       {% for carGroup in cars %}
-      <form action="">
-        <div class="corpo-produto">
-          <h5 class="title">{{carGroup.title}}</h5>
-          <div class="img-produto">
-            <img src="{{carGroup.img}}" alt="" class="produto-miniatura" />
-          </div>
-          <div class="subtitulo">
-            <p>{{carGroup.subtitle}}</p>
-            <p>A partir de</p>
-            <h2>R${{carGroup.price}}/dia</h2>
-          </div>
-          <button class="button" name="">
-            <a
-              href="/vehicle/{{carGroup.link}}"
-              class="text-decoration-none text-light"
-              >Escolher Grupo</a
-            >
-          </button>
+      <div class="corpo-produto">
+        <h5 class="title">{{carGroup.title}}</h5>
+        <div class="img-produto">
+          <img src="{{carGroup.img}}" alt="" class="produto-miniatura" />
         </div>
-      </form>
+        <div class="subtitulo">
+          <p>{{carGroup.subtitle}}</p>
+          <p>A partir de</p>
+          <h2>R${{carGroup.price}}/dia</h2>
+        </div>
+      </div>
       {% endfor %}
+      <div class="w-50">
+        <a href="{% url 'vehicles' %}" class="text-decoration-none text-light"
+          ><button class="button fixed-bottom" name="">
+            Confira Todos Os Grupo
+          </button>
+        </a>
+      </div>
     </div>
   </section>
 </div>

@@ -5,10 +5,11 @@ from django.conf.urls.static import static
 from driveNation import views
 
 urlpatterns = [
-    path('', views.home),
-    path('vehicle/<str:id>/', views.vehicle),
-    path('register', views.register),
-    path('login', views.login)
+    path('', views.home, name="home"),
+    path('vehicles', views.vehicle, name="vehicles"),
+    path('register', views.register, name="register"),
+    path('login', views.login, name="login"),
+    path('location', views.location, name="location")
 ]
 
 if settings.DEBUG:

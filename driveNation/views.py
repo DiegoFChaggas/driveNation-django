@@ -36,7 +36,7 @@ def home(request):
     }
     return render(request, "driveNation/index.html", informations)
 
-def vehicle(request,id):
+def vehicle(request):
     informations = {
         'cars' : cars, 
     }
@@ -47,3 +47,6 @@ def register(request):
 
 def login(request):
     return render(request, "driveNation/login.html")
+
+def location(request):
+    return render(request, "driveNation/location.html")

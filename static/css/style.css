@@ -190,6 +190,7 @@ ion-icon {
 .corpo-produto:hover {
   transform: scale(1.02);
   box-shadow: -8px 8px 18px #ccc;
+  transition: 0.2s;
 }
 .corpo-produto h2 {
   font-size: 20px;
@@ -239,7 +240,6 @@ ion-icon {
   width: 800px;
   height: 300px;
   overflow: hidden;
-  border: 1px solid red;
 }
 
 .slides {
@@ -320,7 +320,7 @@ ion-icon {
 }
 /*Fim home*/
 /*Inicio Footer*/
-.footer {
+.footer{
   background: var(--primary-color);
   width: 100vw;
 }

@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <title>DriveNation</title>
+    <title>DriveNation | {% block title %}{% endblock title %}</title>
   </head>
   <body>
-    <header class="w-100">
+    <header class="">
       <nav class="navbar navbar-expand-lg w-100">
         <div class="container-fluid">
-          <a class="navbar-brand logo" href="/">DriveNation</a>
+          <a class="navbar-brand logo" href="{% url 'home' %}">DriveNation</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -45,7 +45,9 @@
               <a class="nav-link d-flex active text-light" href="#"
                 ><h3>Minhas Reservas</h3></a
               >
-              <a class="nav-link d-flex active text-light" href="login"
+              <a
+                class="nav-link d-flex active text-light"
+                href="{% url 'login' %}"
                 ><ion-icon name="person-circle-outline"></ion-icon>
                 <h3>Entrar</h3></a
               >
@@ -53,36 +55,8 @@
           </div>
         </div>
       </nav>
-      <!--<a href="home" class="logo">DriveNation</a>
-        <nav>
-            <li>
-                <ul>
-                    <a href="#">
-                        <ion-icon name="call-outline"></ion-icon><h3>Contato</h3>
-                    </a>
-                </ul>
-                <ul>
-                    <a href="#"><ion-icon name="help-circle-outline">
-                        </ion-icon><h3>Ajuda</h3>
-                    </a>
-                </ul>
-            </li>
-            <p>|</p>
-            <li class="userInformation">
-                <ul>
-                    <a href="#">
-                        <h3>Minhas Reservas</h3>
-                    </a>
-                </ul>
-                <ul>
-                    <a href="login">
-                        <ion-icon name="person-circle-outline"></ion-icon><h3>Entrar</h3>
-                    </a>
-                </ul>
-            </li>
-        </nav>-->
     </header>
-    <main>{% block content %}{% endblock %}</main>
+    <main>{% block content %}{% endblock content%}</main>
     <footer
       class="footer d-flex align-items-center justify-content-around text-light"
     >
