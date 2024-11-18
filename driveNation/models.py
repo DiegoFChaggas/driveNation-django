@@ -30,7 +30,7 @@ class Vehicle(models.Model):
     
     
     def __str__(self):
-        return self.plate
+        return self.title
 class Rental(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
