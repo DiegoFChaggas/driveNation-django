@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class NaturalPerson(models.Model):
     cpf = models.CharField(max_length=11, unique=True)
@@ -11,22 +12,6 @@ class NaturalPerson(models.Model):
     def __str__(self):
         return self.name
 
-class User(models.Model):
-    email = models.EmailField(max_length=255, unique=True)
-    password = models.CharField(max_length=255)
-    situation = models.CharField(max_length=1, default='A')
-    regulation_agreement = models.CharField(max_length=1)
-    mobile1 = models.CharField(max_length=11)
-    mobile2 = models.CharField(max_length=11, null=True, blank=True)
-    registration_date = models.DateTimeField(auto_now=True)
-    natural_person = models.ForeignKey(NaturalPerson, on_delete=models.CASCADE)
-    permission = models.CharField(max_length=3)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-    
-    def __str__(self):
-        return self.email
-
 class Vehicle(models.Model):
     plate = models.CharField(max_length=10, unique=True)
     model = models.CharField(max_length=50)
@@ -38,7 +23,7 @@ class Vehicle(models.Model):
     fuel_type = models.CharField(max_length=20)
     image = models.ImageField(upload_to='vehicles/images/%Y/%m/%d/')
     title = models.TextField()
-    subtitle = models.TextField()
+    description = models.TextField()
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)

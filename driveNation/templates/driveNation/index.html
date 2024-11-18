@@ -164,14 +164,15 @@
           <h2>R${{carGroup.price}}/dia</h2>
         </div>
       </div>
-      {% endfor %}
-      <div class="w-50">
-        <a href="{% url 'vehicles' %}" class="text-decoration-none text-light"
-          ><button class="button fixed-bottom" name="">
-            Confira Todos Os Grupo
-          </button>
-        </a>
-      </div>
+      {% endfor %} 
+    </div>
+    <br><br>
+    <div class="w-50">
+      <a href="{% url 'vehicles' %}" class="text-decoration-none text-light">
+        <button class="button fixed-bottom" name="">
+          Confira Todos Os Grupo
+        </button>
+      </a>
     </div>
   </section>
 </div>
