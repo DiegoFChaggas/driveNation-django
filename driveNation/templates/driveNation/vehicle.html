@@ -5,18 +5,18 @@
   <h1 class="title">Selecione o veiculo que melhor te atende</h1>
   <br /><br /><br />
   <div class="linha-produtos">
-    {% for car in cars %}
+    {% for vehicle in vehicles %}
       <div class="corpo-produto">
-        <h5 class="title">{{car.title}}</h5>
+        <h5 class="title">{{vehicle.title}}</h5>
         <div class="img-produto">
-          <img src="{{car.img}}" alt="" class="produto-miniatura" />
+          <img src="{{vehicle.image.url}}" alt="" class="produto-miniatura" />
         </div>
         <div class="subtitulo">
-          <p>{{car.subtitle}}</p>
+          <p>{{vehicle.description}}</p>
           <p>A partir de</p>
           <h2>R${{car.price}}/dia</h2>
         </div>
-        <a href="{% url 'location' %}" class="text-decoration-none text-light"
+        <a href="{% url 'location' vehicle.id %}" class="text-decoration-none text-light"
           ><button class="button fixed-bottom" name="">
             Reservar Agora
           </button>

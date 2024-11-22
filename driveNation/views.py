@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Vehicle
 
 cars = [
     {   
@@ -37,10 +38,10 @@ def home(request):
     return render(request, "driveNation/index.html", informations)
 
 def vehicle(request):
-    informations = {
-        'cars' : cars, 
-    }
-    return render(request, "driveNation/vehicle.html", informations)
+    vehicles = Vehicle.objects.all()
+    return render(request, "driveNation/vehicle.html", context={
+        'vehicles': vehicles,
+    })
 
 def register(request):
     return render (request, "driveNation/register.html")
@@ -48,5 +49,5 @@ def register(request):
 def login(request):
     return render(request, "driveNation/login.html")
 
-def location(request):
+def location(request,id):
     return render(request, "driveNation/location.html")
