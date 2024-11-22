@@ -59,6 +59,7 @@ class Rental(models.Model):
 
     def __str__(self):
         return f'Rental of {self.vehicle.plate} by {self.user.email}'
+    
 # Table: Maintenance
 class Maintenance(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Vehicle
+from .models import Vehicle, VehiclePrice
 
 cars = [
     {   
@@ -39,8 +39,10 @@ def home(request):
 
 def vehicle(request):
     vehicles = Vehicle.objects.all()
+    price = VehiclePrice.objects.all()
     return render(request, "driveNation/vehicle.html", context={
         'vehicles': vehicles,
+        'prices' : price,
     })
 
 def register(request):

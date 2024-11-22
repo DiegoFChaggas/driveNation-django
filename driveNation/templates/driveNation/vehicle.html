@@ -14,7 +14,12 @@
         <div class="subtitulo">
           <p>{{vehicle.description}}</p>
           <p>A partir de</p>
-          <h2>R${{car.price}}/dia</h2>
+          {% for price in prices %}
+            {% if price.id == vehicle.id %}
+              <h2>R${{price.daily_price}}/dia</h2>
+            {% else %}
+            {% endif %}
+          {% endfor %}
         </div>
         <a href="{% url 'location' vehicle.id %}" class="text-decoration-none text-light"
           ><button class="button fixed-bottom" name="">
