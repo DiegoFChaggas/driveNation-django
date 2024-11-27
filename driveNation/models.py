@@ -11,8 +11,21 @@ class NaturalPerson(models.Model):
     
     def __str__(self):
         return self.name
+    
+class VehicleGroup(models.Model):
+    abbreviation = models.CharField(max_length=10, unique=True)
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+    default_daily_price = models.DecimalField(max_digits=8, decimal_places=2)
+    default_weekly_price = models.DecimalField(max_digits=8, decimal_places=2)
+    default_monthly_price = models.DecimalField(max_digits=8, decimal_places=2)
 
+    def __str__(self):
+        return f"{self.abbreviation} - {self.name}"
+    
+    
 class Vehicle(models.Model):
+    group = models.ForeignKey(VehicleGroup, on_delete=models.CASCADE, related_name="vehicles")
     plate = models.CharField(max_length=10, unique=True)
     model = models.CharField(max_length=50)
     brand = models.CharField(max_length=50)
@@ -37,18 +50,7 @@ class Vehicle(models.Model):
     def __str__(self):
         return self.title
 
-class VehiclePrice(models.Model):
-    vehicle = models.OneToOneField(Vehicle, on_delete=models.CASCADE, related_name='price')
-    daily_price = models.DecimalField(max_digits=8, decimal_places=2, help_text="Price per day")
-    weekly_price = models.DecimalField(max_digits=8, decimal_places=2, help_text="Price per week")
-    monthly_price = models.DecimalField(max_digits=8, decimal_places=2, help_text="Price per month")
-    discount = models.DecimalField(max_digits=5, decimal_places=2, default=0.00, help_text="Discount percentage for long-term rentals")
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f'Pricing for {self.vehicle.plate}'
     
 class Rental(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

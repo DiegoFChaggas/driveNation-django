@@ -6,27 +6,26 @@
   <br /><br /><br />
   <div class="linha-produtos">
     {% for vehicle in vehicles %}
-      <div class="corpo-produto">
-        <h5 class="title">{{vehicle.title}}</h5>
-        <div class="img-produto">
-          <img src="{{vehicle.image.url}}" alt="" class="produto-miniatura" />
+      {% if vehicles %}
+        <div class="corpo-produto">
+          <h5 class="title">{{vehicle.title}}</h5>
+          <div class="img-produto">
+            <img src="{{vehicle.image.url}}" alt="" class="produto-miniatura" />
+          </div>
+          <div class="subtitulo">
+            <p>{{vehicle.description}}</p>
+            <p>A partir de</p>
+            <h2>R${{vehicle.group.default_daily_price}}/dia</h2>
+          </div>
+          <a href="{% url 'location' vehicle.id %}" class="text-decoration-none text-light"
+            ><button class="button fixed-bottom" name="">
+              Reservar Agora
+            </button>
+          </a>
         </div>
-        <div class="subtitulo">
-          <p>{{vehicle.description}}</p>
-          <p>A partir de</p>
-          {% for price in prices %}
-            {% if price.id == vehicle.id %}
-              <h2>R${{price.daily_price}}/dia</h2>
-            {% else %}
-            {% endif %}
-          {% endfor %}
-        </div>
-        <a href="{% url 'location' vehicle.id %}" class="text-decoration-none text-light"
-          ><button class="button fixed-bottom" name="">
-            Reservar Agora
-          </button>
-        </a>
-      </div>
+      {% else %}
+        <h1 class="title">Não há veiculos cadastrados</h1>
+      {% endif %}
     {% endfor %}
   </div>
 </section>
