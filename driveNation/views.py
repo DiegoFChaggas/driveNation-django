@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Vehicle, VehicleGroup
 
 cars = [
@@ -50,7 +50,7 @@ def login(request):
     return render(request, "driveNation/login.html")
 
 def rental(request,model):
-    vehicles = Vehicle.objects.filter(model = model)
+    vehicles = get_object_or_404(Vehicle, model=model)
     return render(request, "driveNation/rental.html", context={
         'vehicles': vehicles,
     })
