@@ -2,11 +2,11 @@
 {% block content %}
 
 <section class="container d-flex flex-column align-items-center">
+  {% if vehicles %}
   <h1 class="title">Selecione o veiculo que melhor te atende</h1>
   <br /><br /><br />
   <div class="linha-produtos">
     {% for vehicle in vehicles %}
-      {% if vehicles %}
         <div class="corpo-produto">
           <h5 class="title">{{vehicle.title}}</h5>
           <div class="img-produto">
@@ -17,16 +17,16 @@
             <p>A partir de</p>
             <h2>R${{vehicle.group.default_daily_price}}/dia</h2>
           </div>
-          <a href="{% url 'location' vehicle.id %}" class="text-decoration-none text-light"
+          <a href="{% url 'location' vehicle.brand %}" class="text-decoration-none text-light"
             ><button class="button fixed-bottom" name="">
               Reservar Agora
             </button>
           </a>
         </div>
-      {% else %}
-        <h1 class="title">Não há veiculos cadastrados</h1>
-      {% endif %}
     {% endfor %}
   </div>
+  {% else %}
+    <h1 class="title">Não há veiculos cadastrados</h1>
+  {% endif %}
 </section>
 {% endblock %}
