@@ -9,7 +9,7 @@ urlpatterns = [
     path('vehicles', views.vehicle, name="vehicles"),
     path('register', views.register, name="register"),
     path('login', views.login, name="login"),
-    path('location/<str:id>/', views.location, name="location")
+    path('rental/<str:model>/', views.rental, name="rental")
 ]
 
 if settings.DEBUG:

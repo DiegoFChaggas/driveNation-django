@@ -49,5 +49,8 @@ def register(request):
 def login(request):
     return render(request, "driveNation/login.html")
 
-def location(request,id):
-    return render(request, "driveNation/location.html")
+def rental(request,model):
+    vehicles = Vehicle.objects.filter(model = model)
+    return render(request, "driveNation/rental.html", context={
+        'vehicles': vehicles,
+    })
