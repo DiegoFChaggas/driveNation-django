@@ -1,11 +1,30 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Address(models.Model):
+    zip_code = models.CharField(max_length=9, verbose_name="CEP")  # Ex.: 12345-678
+    street = models.CharField(max_length=255, verbose_name="Endereço")
+    number = models.CharField(max_length=10, verbose_name="Número")
+    complement = models.CharField(max_length=255, blank=True, null=True, verbose_name="Complemento")
+    neighborhood = models.CharField(max_length=100, verbose_name="Bairro")
+    country = models.CharField(max_length=100, verbose_name="País")
+    state = models.CharField(max_length=100, verbose_name="Estado")
+    city = models.CharField(max_length=100, verbose_name="Cidade")
+
+    class Meta:
+        verbose_name = "Endereço"
+        verbose_name_plural = "Endereços"
+
+    def __str__(self):
+        return f"{self.endereco}, {self.numero} - {self.cidade}/{self.estado}"
+
 class NaturalPerson(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="natural_person")
     cpf = models.CharField(max_length=11, unique=True)
     birth_date = models.DateField()
     sex = models.CharField(max_length=1)
     name = models.CharField(max_length=255)
+    address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Endereço")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Vehicle, VehicleGroup
+from .models import Vehicle, VehicleGroup, Rental
 
 cars = [
     {   
@@ -49,8 +49,9 @@ def register(request):
 def login(request):
     return render(request, "driveNation/login.html")
 
-def rental(request,model):
-    vehicles = get_object_or_404(Vehicle, model=model)
+def rental(request,id):
+    vehicles = get_object_or_404(Vehicle, id=id)
+        
     return render(request, "driveNation/rental.html", context={
         'vehicles': vehicles,
     })
