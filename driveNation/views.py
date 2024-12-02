@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as login_django
+from django.contrib.auth.decorators import login_required
+
 from django.contrib import messages
-from django.core.exceptions import ValidationError
 import re
 
 from .models import Vehicle, NaturalPerson, Address, License
@@ -41,11 +44,6 @@ def home(request):
     }
     return render(request, "driveNation/index.html", informations)
 
-def vehicle(request):
-    vehicles = Vehicle.objects.all()
-    return render(request, "driveNation/vehicle.html", context={
-        'vehicles': vehicles,
-    })
 
 def register(request):
     if request.method == 'POST':
@@ -76,7 +74,10 @@ def register(request):
         category = data.get('categoria')
         issuing_agency = data.get('orgaoEmissor')
 
-        # Validações
+        user = User.objects.filter(username=username).first()
+        
+        if user:
+            return messages.error(request, "Usuário já existe.")
         
         user = User.objects.create_user(username=username, email=email, password=password)
             
@@ -118,11 +119,33 @@ def register(request):
     return render(request, "driveNation/register.html")
 
 def login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        senha = request.POST.get('senha')
+        
+        user = authenticate(username=username, password=senha)
+        if user:
+            login_django(request, user)
+            return redirect('home')
+        
+        else:
+            return redirect('login')
     return render(request, "driveNation/login.html")
 
+
+@login_required(login_url="/login")
+def vehicle(request):
+    vehicles = Vehicle.objects.all()
+    return render(request, "driveNation/vehicle.html", context={
+        'vehicles': vehicles,
+    })
+    
+@login_required(login_url="/login")
 def rental(request,id):
     vehicles = get_object_or_404(Vehicle, id=id)
         
     return render(request, "driveNation/rental.html", context={
         'vehicles': vehicles,
     })
+
+
