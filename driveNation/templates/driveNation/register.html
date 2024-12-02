@@ -4,7 +4,7 @@
 <main class="container">
     <section class="content">
         <h4>Cadastrar</h4>
-        <form type="submit"id="informacoesUsuario" class="form-group" method="post">
+        <form type="submit" id="informacoesUsuario" class="form-group" method="post"> {% csrf_token %}
             <fieldset class="input-group">
                 <legend>Informaçoes Pessoais</legend>
                 
@@ -39,6 +39,10 @@
             <label class="form-check-label" for="flexRadioDefault2">
                 Feminino
             </label>
+            </div>
+            <div class="input-email">
+                <label for="username" class="form-label">Nome de Usuário:</label>
+                <input type="text" class="form-control" id="username" name="username"required>
             </div>
             <div class="input-email">
                 <label for="email" class="form-label">Email:</label>

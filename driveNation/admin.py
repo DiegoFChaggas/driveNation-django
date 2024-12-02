@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import NaturalPerson, Vehicle, Rental, Maintenance, Payment,License, VehicleGroup
+from .models import NaturalPerson, Vehicle, Rental, Maintenance, Payment,License, VehicleGroup, Address
 class NaturalPersonAdmin(admin.ModelAdmin):
     ...
 admin.site.register(NaturalPerson, NaturalPersonAdmin)
@@ -24,3 +24,7 @@ admin.site.register(License, LicenseAdmin)
 class VehicleGroupAdmin(admin.ModelAdmin):
     ...
 admin.site.register(VehicleGroup, VehicleGroupAdmin)
+
+class AddressAdmin(admin.ModelAdmin):
+    ...
+admin.site.register(Address, AddressAdmin)

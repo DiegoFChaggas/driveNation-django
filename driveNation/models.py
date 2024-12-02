@@ -16,10 +16,10 @@ class Address(models.Model):
         verbose_name_plural = "Endereços"
 
     def __str__(self):
-        return f"{self.endereco}, {self.numero} - {self.cidade}/{self.estado}"
+        return f"{self.street}, {self.number} - {self.city}/{self.state}"
 
 class NaturalPerson(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="natural_person")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,)
     cpf = models.CharField(max_length=11, unique=True)
     birth_date = models.DateField()
     sex = models.CharField(max_length=1)

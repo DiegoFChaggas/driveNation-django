@@ -1,6 +1,10 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Vehicle, VehicleGroup, Rental
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.core.exceptions import ValidationError
+import re
 
+from .models import Vehicle, NaturalPerson, Address, License
 cars = [
     {   
         'title'    : 'GRUPO CE - ECONÔMICO C/AR',
@@ -44,7 +48,74 @@ def vehicle(request):
     })
 
 def register(request):
-    return render (request, "driveNation/register.html")
+    if request.method == 'POST':
+        # Extraindo dados do formulário
+        data = request.POST
+        username = data.get('username')
+        email = data.get('email')
+        password = data.get('senha')
+        cpf = data.get('cpf')
+        name = data.get('nomeUsuario')
+        birth_date = data.get('dtNasc')
+        sex = data.get('sexo')
+
+        # Endereço
+        zip_code = data.get('cep')
+        street = data.get('endereco')
+        number = data.get('numero')
+        complement = data.get('complemento')
+        neighborhood = data.get('bairro')
+        country = data.get('pais')
+        state = data.get('estado')
+        city = data.get('cidade')
+
+        # Habilitação
+        license_number = data.get('numeroHabilitacao')
+        issue_date = data.get('dtEmissao')
+        expiration_date = data.get('dtValidade')
+        category = data.get('categoria')
+        issuing_agency = data.get('orgaoEmissor')
+
+        # Validações
+        
+        user = User.objects.create_user(username=username, email=email, password=password)
+            
+        address = Address.objects.create(
+                    zip_code=zip_code,
+                    street=street,
+                    number=number,
+                    complement=complement,
+                    neighborhood=neighborhood,
+                    country=country,
+                    state=state,
+                    city=city
+                )
+
+                # Criar NaturalPerson
+        natural_person = NaturalPerson.objects.create(
+                    user=user,
+                    cpf=cpf,
+                    name=name,
+                    birth_date=birth_date,
+                    sex=sex,
+                    address=address
+                )
+
+                # Criar licença
+        License.objects.create(
+                    user=user,
+                    license_number=license_number,
+                    issue_date=issue_date,
+                    expiration_date=expiration_date,
+                    category=category,
+                    issuing_agency=issuing_agency
+                )
+
+        messages.success(request, "Usuário cadastrado com sucesso!")
+        
+        return redirect('login')
+        
+    return render(request, "driveNation/register.html")
 
 def login(request):
     return render(request, "driveNation/login.html")
